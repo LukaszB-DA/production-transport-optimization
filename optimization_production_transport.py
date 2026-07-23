@@ -216,10 +216,10 @@ labour_total =labour_fixed_cost + labour_variable_cost * pl.lpSum(qty_produced[p
 
 model += income - production_cost - fixed_machine_cost - transport_total - labour_total
 
-# Solve with explicit zero relative gap — document that we require a proven optimum,
-# not just "good enough" (same lesson as the Excel Integer Optimality tolerance issue)
-# Rozwiąż z jawnie zerową tolerancją względną — udokumentuj, że wymagamy udowodnionego
-# optimum, a nie tylko "wystarczająco dobrego" (ta sama lekcja co tolerancja w Excelu)
+# Solve with explicit zero relative gap, to guarantee a proven optimum
+# rather than a solution merely within some tolerance of it
+# Rozwiąż z jawnie zerową tolerancją względną, aby zagwarantować
+# udowodnione optimum, a nie rozwiązanie jedynie w pewnej jego tolerancji
 
 model.solve(pl.PULP_CBC_CMD(gapRel=0.0))
 
